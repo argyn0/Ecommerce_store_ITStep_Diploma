@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h3>Оплата через PayPal</h3>
+    <p>Ваш заказ готов к оплате. Нажмите кнопку ниже, чтобы завершить оплату через PayPal.</p>
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        {{ paypal_form.as_p }}
+        <button type="submit" class="btn btn-primary">Оплатить через PayPal</button>
+    </form>
+</div>
+{% endblock %}

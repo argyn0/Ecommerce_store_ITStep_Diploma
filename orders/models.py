@@ -1,15 +1,16 @@
 from django.db import models
 from goods.models import Products
-
 from users.models import User
 
 
 class OrderitemQueryset(models.QuerySet):
     
     def total_price(self):
+        # Метод для подсчета общей стоимости всех товаров в заказе
         return sum(cart.products_price() for cart in self)
     
     def total_quantity(self):
+        # Метод для подсчета общей количества товаров в заказе
         if self:
             return sum(cart.quantity for cart in self)
         return 0
@@ -32,6 +33,13 @@ class Order(models.Model):
     def __str__(self):
         return f"Заказ № {self.pk} | Покупатель {self.user.first_name} {self.user.last_name}"
 
+    def total_cost(self):
+        # Метод для подсчета общей стоимости всех товаров в заказе
+        return self.orderitem_set.total_price()
+
+    def total_quantity(self):
+        # Метод для подсчета общего количества товаров в заказе
+        return self.orderitem_set.total_quantity()
 
 class OrderItem(models.Model):
     order = models.ForeignKey(to=Order, on_delete=models.CASCADE, verbose_name="Заказ")
@@ -41,7 +49,6 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField(default=0, verbose_name="Количество")
     created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name="Дата продажи")
 
-
     class Meta:
         db_table = "order_item"
         verbose_name = "Проданный товар"
@@ -50,6 +57,7 @@ class OrderItem(models.Model):
     objects = OrderitemQueryset.as_manager()
 
     def products_price(self):
+        # Метод для вычисления стоимости товаров в этом заказе
         return round(self.product.sell_price() * self.quantity, 2)
 
     def __str__(self):

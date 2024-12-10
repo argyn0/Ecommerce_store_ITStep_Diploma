@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'users',
     'carts',
     'orders',
+
+    'paypal.standard.ipn',
+    'paypal.standard',
 ]
 
 MIDDLEWARE = [
@@ -90,9 +93,9 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'home',
-        'USER': 'home',
-        'PASSWORD': 'home',
+        'NAME': 'OnlineStore',
+        'USER': 'postgres',
+        'PASSWORD': '3412',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -156,3 +159,8 @@ INTERNAL_IPS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/user/login/'
+
+#Paypal settings
+#Set sandbox to TRUE
+PAYPAL_RECEIVER_EMAIL = 'RuslanKononov@test.com' # Business paypal account
+PAYPAL_TEST = True

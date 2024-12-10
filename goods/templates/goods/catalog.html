@@ -93,11 +93,11 @@
                     <div class="d-flex justify-content-between">
 
                         {% if product.discount %}
-                            <p><s>{{product.price}}</s> $</p>
-                            <p><strong>{{ product.sell_price }} $</strong></p>
+                            <p><s>{{product.price}}</s> ₸</p>
+                            <p><strong>{{ product.sell_price }} ₸</strong></p>
                             <span class="badge bg-warning text-dark">Скидка {{ product.discount }} %</span>
                         {% else %}
-                            <p><strong>{{ product.price }} $</strong></p>
+                            <p><strong>{{ product.price }} ₸</strong></p>
                         {% endif %}
 
                         <a href="{% url "cart:cart_add" %}" class="btn add-to-cart"
@@ -147,7 +147,7 @@
 {% block footer %}
 <footer class="py-4 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Home Python Hub Studio 2023</p>
+        <p class="m-0 text-center text-white">&copy;Store 2024</p>
     </div>
 </footer>
-{% endblock  %}
+{% endblock %}
