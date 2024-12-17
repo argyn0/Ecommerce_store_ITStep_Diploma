@@ -67,13 +67,13 @@
         <div class="col-lg-4 col-md-6 p-4">
             <div class="card border-primary rounded custom-shadow">
                 {% if product.image %}
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="width: 317px; height: 375px;">
                 {% else %}
                     <img src="{% static "deps/images/Not found image.png" %}" class="card-img-top" alt="...">
                 {% endif %}
                 <div class="card-body">
                     <a href="{% url "catalog:product" product.slug %}">
-                        <p class="card-title">
+                        <p class="card-title" style="text-decoration: none; color: gray; font-weight: bold;">
                             {% autoescape off %}
                                 {% if product.headline %}
                                 {{product.headline}}
@@ -96,11 +96,11 @@
                     <div class="d-flex justify-content-between">
 
                         {% if product.discount %}
-                            <p><s>{{product.price}}</s> ₸</p>
-                            <p><strong>{{ product.sell_price }} ₸</strong></p>
+                            <p><s>{{product.price}}</s> $</p>
+                            <p><strong>{{ product.sell_price }} $</strong></p>
                             <span class="badge bg-warning text-dark">Скидка {{ product.discount }} %</span>
                         {% else %}
-                            <p><strong>{{ product.price }} ₸</strong></p>
+                            <p><strong>{{ product.price }} $</strong></p>
                         {% endif %}
 
                         <a href="{% url "cart:cart_add" %}" class="btn add-to-cart"
